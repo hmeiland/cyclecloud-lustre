@@ -9,11 +9,11 @@ default['lustre-client']['repo']['yum']['gpgcheck'] = false
 default['e2fs']['repo']['yum']['baseurl'] = "https://downloads.whamcloud.com/public/e2fsprogs/latest/el7/"
 default['e2fs']['repo']['yum']['gpgcheck'] = false 
 
-# the directory on the MGS, MDS and OSS where the BeeGFS data resides
+# the directory on the MGS, MDS and OSS where the Lustre data resides
 default['lustre']['root_dir'] = '/data/lustre'
 default['lustre']['manager_ipaddress'] = nil
 
-# BeeeGFS Clients
+# Lustre Clients
 # Allow clients to specify a specific MGS, or a clustername to connect to
 # Order of precedence:
 # 1. manager_ipaddress
@@ -22,5 +22,5 @@ default['lustre']['manager_ipaddress'] = nil
 default['lustre']['client']['manager_ipaddress'] = nil
 default['lustre']['client']['cluster_name'] = nil
 
-# The mount point for the BeeGFS clients
-default['lustre']['client']['mount_point'] = '/mnt/beegfs'
+# The mount point for the Lustreclients
+default['lustre']['client']['mount_point'] = '/lustre'
