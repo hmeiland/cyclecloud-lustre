@@ -1,0 +1,16 @@
+region = "<%= node['azure']['metadata']['compute']['location'] %>"
+az_storage_account = "<%= node['lustre']['blobaccount'] %>"
+az_storage_key = "<%= node['lustre']['blobkey'] %>"
+
+num_threads = 8
+
+#
+# One or more archive definition is required.
+#
+archive  "az-blob" {
+    id = 1                       # Must be unique to this endpoint
+    container = "<%= node['lustre']['blobcontainer'] %>"  # Container used for this archive
+    prefix = "lustre-archive"              # Optional prefix
+    num_threads = 4
+}
+

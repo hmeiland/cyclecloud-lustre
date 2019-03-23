@@ -70,6 +70,25 @@ Category = Applications
         [[[network-interface eth0]]]
         AssociatePublicIpAddress = $ExecuteNodesPublic
 
+    [[nodearray hsm]]
+    MachineType = $ExecuteMachineType
+    MaxCoreCount = $MaxExecuteCoreCount
+
+    Interruptible = $UseLowPrio
+    AdditionalClusterInitSpecs = $ExecuteClusterInitSpecs
+
+
+        [[[configuration]]]
+	lustre.blobaccount = $LustreBlobAccount
+	lustre.blobkey = $LustreBlobKey
+	lustre.blobcontainer = $LustreBlobContainer
+
+        [[[cluster-init lustre:hsm:1.0.0]]]
+        Optional = True
+
+        [[[network-interface eth0]]]
+        AssociatePublicIpAddress = $ExecuteNodesPublic
+
 [parameters About]
 Order = 1
 
@@ -202,3 +221,26 @@ Order = 20
         ParameterType = Boolean
         Config.Label = Access execute nodes from the Internet
         Conditions.Excluded := UsePublicNetwork isnt true
+
+[parameters Lustre Settings]
+Order = 30
+
+    [[parameters Lustre HSM]]
+
+        [[[parameter LustreBlobAccount]]]
+        Label = Blob Account
+        Description = The blob account to which Lustre will sync.
+        DefaultValue = <blob account name> 
+        Required = True
+
+        [[[parameter LustreBlobKey]]]
+        Label = Blob Key
+        Description = The blob account key.
+        DefaultValue = <blob account key>
+        Required = True
+        
+	[[[parameter LustreBlobContainer]]]
+        Label = Blob Container
+        Description = The blob container.
+        DefaultValue = <blob container>
+        Required = True

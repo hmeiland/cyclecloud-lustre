@@ -1,0 +1,11 @@
+[Unit]
+Description=The lhsmd server
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+PIDFile=/run/lhsmd.pid
+ExecStart=/sbin/lhsmd -config /etc/lhsmd/agent
+
+[Install]
+WantedBy=multi-user.target
