@@ -17,7 +17,7 @@ cyclecloud import_template -f templates/lustre.txt
 
 # First Lustre Filesystem
 
-<img href=manual/create-new-cluster.png>
+![Create new cluster](manual/create-new-cluster.png?raw=true)
 
 # Contributing
 
