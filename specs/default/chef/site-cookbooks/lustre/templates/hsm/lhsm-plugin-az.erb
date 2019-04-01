@@ -11,6 +11,6 @@ archive  "az-blob" {
     id = 1                       # Must be unique to this endpoint
     container = "<%= node['lustre']['blobcontainer'] %>"  # Container used for this archive
     prefix = "lustre-archive"              # Optional prefix
-    num_threads = 4
+    num_threads = 8 
 }
 

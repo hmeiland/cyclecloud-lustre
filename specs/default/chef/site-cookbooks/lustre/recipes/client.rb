@@ -10,9 +10,17 @@ bash 'initialize client' do
   cwd '/tmp'
   code <<-EOH
   echo "my ip is #{manager_ipaddress}"
-  mkdir -p /lustre
+  #mkdir -p /lustre
   EOH
 end
+
+directory '/lustre' do
+  owner 'root'
+  group 'root'
+  mode '0777'
+  action [:create]
+end
+
 #mount -t lustre #{manager_ipaddress}@tcp0:/lustre /lustre
 if File.read('/etc/mtab').lines.grep(/ lustre /)[0]
   Chef::Log.info("Lustre is already mounted")

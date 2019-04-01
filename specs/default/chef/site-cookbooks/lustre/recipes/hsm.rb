@@ -23,21 +23,21 @@ directory '/var/run/lhsmd' do
   owner 'root'
   group 'root'
   mode '0755'
-  action :create
+  action [:create]
 end
 
 directory '/etc/lhsmd' do
   owner 'root'
   group 'root'
   mode '0755'
-  action :create
+  action [:create]
 end
 
 directory '/lustre' do
   owner 'root'
   group 'root'
   mode '0777'
-  action :create
+  action [:create]
 end
 
 template '/etc/lhsmd/agent' do
@@ -65,10 +65,14 @@ bash 'start lhsmd' do
   cwd '/tmp'
   code <<-EOH
 systemctl daemon-reload
-systemctl enable lhsmd
-systemctl start lhsmd
+#systemctl enable lhsmd
+#systemctl start lhsmd
   EOH
 end
+systemd_unit 'lhsmd' do
+  action [:enable, :start]
+end
+
 #mount -t lustre #{manager_ipaddress}@tcp0:/lustre /lustre
 #if File.read('/etc/mtab').lines.grep(/ lustre /)[0]
 #  Chef::Log.info("Lustre is already mounted")

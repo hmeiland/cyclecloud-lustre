@@ -3,9 +3,10 @@
 ## Cluster Configuration File ##
 ################################
 
-[cluster lustre]
+[cluster Lustre]
 FormLayout = selectionpanel
-Category = Applications
+Category = Filesystems 
+IconURL = http://lustre.org/wp-content/themes/lustre-opensfs/library/images/print-logo.png
 
     [[node defaults]]
     UsePublicNetwork = $UsePublicNetwork
