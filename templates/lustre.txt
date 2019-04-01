@@ -8,7 +8,6 @@ FormLayout = selectionpanel
 Category = Filesystems 
 IconURL = http://lustre.org/wp-content/themes/lustre-opensfs/library/images/print-logo.png
 AutoScale = false
-MaxCoreCount = 1000
 
 UseLowPrio = false
 
@@ -44,7 +43,6 @@ UseLowPrio = false
 
     [[nodearray oss]]
     MachineType = $ExecuteMachineType
-    MaxCoreCount = $MaxExecuteCoreCount
     Azure.SingleScaleset = true
 
         [[[configuration]]]
@@ -54,9 +52,6 @@ UseLowPrio = false
 
     [[nodearray client]]
     MachineType = $ExecuteMachineType
-    MaxCoreCount = $MaxExecuteCoreCount
-
-    AdditionalClusterInitSpecs = $ExecuteClusterInitSpecs
 
         [[[configuration]]]
 
@@ -68,10 +63,6 @@ UseLowPrio = false
 
     [[nodearray hsm]]
     MachineType = $ExecuteMachineType
-    MaxCoreCount = $MaxExecuteCoreCount
-
-    Interruptible = $UseLowPrio
-    AdditionalClusterInitSpecs = $ExecuteClusterInitSpecs
 
         [[[configuration]]]
 	lustre.blobaccount = $LustreBlobAccount
