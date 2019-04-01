@@ -17,8 +17,11 @@ On top of this, HSM can be activated to import data from, and archive to Azure b
 ```
 
 [set up first Lustre in CycleCloud](manual/FIRST-LUSTRE.md)
+
 [adding a client and using lustre](manual/LUSTRE-CLIENT.md)
+
 [configure a client in a PBSPro cluster](manual/PBSPRO.md)
+
 [using HSM](manual/HSM.md)
 
 
