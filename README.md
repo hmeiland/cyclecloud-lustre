@@ -9,15 +9,20 @@ On top of this, HSM can be activated to import data from, and archive to Azure b
 
 # Getting started
 
+```
 git clone <this project>
 cd cyclecloud-lustre
 cycleloud project upload
 cyclecloud import_template -f templates/lustre.txt 
-
+```
 
 # First Lustre Filesystem
 
 ![Create new cluster](manual/create-new-cluster.png?raw=true)
+![cluster name](manual/cluster-name.png?raw=true)
+![required-settings](manual/required-settings.png?raw=true)
+![advanced-settings](manual/advanced-settings.png?raw=true)
+![lustre-settings](manual/lustre-settings.png?raw=true)
 
 # Contributing
 
