@@ -10,11 +10,17 @@ On top of this, HSM can be activated to import data from, and archive to Azure b
 # Getting started
 
 ```
-git clone <this project>
-cd cyclecloud-lustre
-cycleloud project upload
-cyclecloud import_template -f templates/lustre.txt 
+> git clone https://github.com/hmeiland/cyclecloud-lustre.git
+> cd cyclecloud-lustre
+> cycleloud project upload <container>
+> cyclecloud import_template -f templates/lustre.txt 
 ```
+
+[set up first Lustre in CycleCloud](manual/FIRST-LUSTRE.md)
+[adding a client and using lustre](manual/LUSTRE-CLIENT.md)
+[configure a client in a PBSPro cluster](manual/PBSPRO.md)
+[using HSM](manual/HSM.md)
+
 
 # First Lustre Filesystem
 
