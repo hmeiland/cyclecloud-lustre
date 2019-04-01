@@ -42,6 +42,7 @@ IconURL = http://lustre.org/wp-content/themes/lustre-opensfs/library/images/prin
     [[nodearray oss]]
     MachineType = $ExecuteMachineType
     MaxCoreCount = $MaxExecuteCoreCount
+    Azure.SingleScaleset = true
 
     Interruptible = $UseLowPrio
     AdditionalClusterInitSpecs = $ExecuteClusterInitSpecs

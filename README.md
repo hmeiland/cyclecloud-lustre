@@ -7,6 +7,18 @@ This cluster is designed to be for scratch data; utilizing the local NVME drives
 
 On top of this, HSM can be activated to import data from, and archive to Azure blobs. 
 
+# Getting started
+
+git clone <this project>
+cd cyclecloud-lustre
+cycleloud project upload
+cyclecloud import_template -f templates/lustre.txt 
+
+
+# First Lustre Filesystem
+
+<img href=manual/create-new-cluster.png>
+
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
