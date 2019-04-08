@@ -17,6 +17,7 @@ go get -u github.com/edwardsp/lemur/cmd/lhsm-plugin-az
 go build github.com/edwardsp/lemur/cmd/lhsm-plugin-az
 sudo cp lhsm-plugin-az /usr/libexec/lhsmd/.
   EOH
+  not_if { ::File.exist?(/usr/libexec/lhsmd/lhsm-plugin-az) }
 end
 
 directory '/var/run/lhsmd' do
