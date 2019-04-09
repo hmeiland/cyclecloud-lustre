@@ -1,5 +1,8 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+
+node.override['cyclecloud']['maintenance_converge']['enabled'] = false
+
 yum_repository 'lustre' do
   description "Lustre #{node['lustre']['repo']['version']} (rhel#{node['platform_version'].to_i})"
   baseurl node['lustre']['repo']['yum']['baseurl']
