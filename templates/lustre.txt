@@ -42,7 +42,7 @@ UseLowPrio = false
         PublicPort = 8652
 
     [[nodearray oss]]
-    MachineType = $ExecuteMachineType
+    MachineType = $MasterMachineType
     Azure.SingleScaleset = true
 
         [[[configuration]]]
@@ -62,7 +62,7 @@ UseLowPrio = false
         AssociatePublicIpAddress = $ExecuteNodesPublic
 
     [[nodearray hsm]]
-    MachineType = $ExecuteMachineType
+    MachineType = $MasterMachineType
 
         [[[configuration]]]
 	lustre.blobaccount = $LustreBlobAccount
@@ -102,13 +102,13 @@ Order = 10
 
         [[[parameter MasterMachineType]]]
         Label = MDS VM Type
-        Description = The VM type for the MDS/MGS of Lustre.
+        Description = The VM type for the MDS/MGS and OSS nodes of Lustre.
         ParameterType = Cloud.MachineType
         DefaultValue = Standard_L8s_v2
 
         [[[parameter ExecuteMachineType]]]
-        Label = OSS VM Type
-        Description = The VM type for OSS nodes
+        Label = Client VM Type
+        Description = The VM type for client nodes
         ParameterType = Cloud.MachineType
         DefaultValue = Standard_L8s_v2
         Config.Multiselect = true
