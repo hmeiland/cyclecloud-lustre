@@ -75,6 +75,17 @@ UseLowPrio = false
         [[[network-interface eth0]]]
         AssociatePublicIpAddress = $ExecuteNodesPublic
 
+    [[nodearray smb]]
+    MachineType = $ExecuteMachineType
+
+        [[[configuration]]]
+
+        [[[cluster-init lustre:smb:1.0.0]]]
+        Optional = True
+
+        [[[network-interface eth0]]]
+        AssociatePublicIpAddress = $ExecuteNodesPublic
+
 [parameters About]
 Order = 1
 
