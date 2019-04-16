@@ -11,4 +11,4 @@
         writable = yes
         guest ok = yes
         read only = no
-        force user = hpcadmin
+        force user = <%= node['cyclecloud']['cluster']['user']['name'] %>
