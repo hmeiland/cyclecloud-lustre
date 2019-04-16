@@ -8,7 +8,6 @@ FormLayout = selectionpanel
 Category = Filesystems 
 IconURL = http://lustre.org/wp-content/themes/lustre-opensfs/library/images/print-logo.png
 AutoScale = false
-
 UseLowPrio = false
 
     [[node defaults]]
@@ -44,6 +43,7 @@ UseLowPrio = false
     [[nodearray oss]]
     MachineType = $MasterMachineType
     Azure.SingleScaleset = true
+    InitialCount = 1
 
         [[[configuration]]]
 
@@ -54,6 +54,7 @@ UseLowPrio = false
     MachineType = $ExecuteMachineType
 
         [[[configuration]]]
+        lustre.client.mount_point = $LustreMountPoint
 
         [[[cluster-init lustre:client:1.0.0]]]
         Optional = True
@@ -147,7 +148,7 @@ Order = 20
 
     [[parameters Software]]
     Description = "Specify the scheduling software, and base OS installed on all nodes, and optionally the cluster-init and chef versions from your Locker."
-    Order = 10
+    Order = 20
 
         [[[parameter ImageName]]]
         Label = Base OS
@@ -181,7 +182,18 @@ Order = 20
 [parameters Lustre Settings]
 Order = 30
 
+    [[parameters Lustre Client Settings]]
+    Order = 10
+    Description = "Use a Lustre cluster as a NAS. Settings for defining the Lustre cluster"
+
+        [[[parameter LustreMountPoint]]]
+        Label = Lustre MountPoint
+        Description = The mount point to mount the Lustre file server on.
+        DefaultValue = /lustre
+        Required = True
+
     [[parameters Lustre HSM]]
+    Order = 20
     Description = "Through the HSM node, Lustre can archive data into, and import data from Azure storage blobs."
 
         [[[parameter LustreBlobAccount]]]
@@ -201,3 +213,4 @@ Order = 30
         Description = The blob container.
         DefaultValue = <blob container>
         Required = True
+
