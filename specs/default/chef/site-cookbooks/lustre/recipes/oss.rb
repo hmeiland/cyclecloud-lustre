@@ -2,7 +2,8 @@
 # Licensed under the MIT License.
 include_recipe "::default"
 
-%w{lustre kmod-lustre-osd-ldiskfs lustre-dkms lustre-osd-ldiskfs-mount lustre-resource-agents e2fsprogs lustre-tests}.each { |p| package p }
+#%w{lustre kmod-lustre-osd-ldiskfs lustre-dkms lustre-osd-ldiskfs-mount lustre-resource-agents e2fsprogs lustre-tests}.each { |p| package p }
+package %w(lustre kmod-lustre-osd-ldiskfs lustre-osd-ldiskfs-mount lustre-resource-agents e2fsprogs lustre-tests)
 
 manager_ipaddress = node["lustre"]["manager_ipaddress"]
 
@@ -14,9 +15,8 @@ bash 'initialize oss' do
   code <<-EOH
   echo "connecting to mds #{manager_ipaddress}"
   echo "creating oss index #{ost_index}"
-  mkfs.lustre --ost --fsname lustre --mgsnode #{manager_ipaddress}@tcp0 --index=#{ost_index} /dev/nvme0n1
-  #mkdir -p /mnt/ost/
-  #mount -t lustre /dev/nvme0n1 /mnt/ost/
+  weak-modules --add-kernel --no-initramfs
+  mkfs.lustre --ost --fsname LustreFS --mgsnode #{manager_ipaddress}@tcp0 --index=#{ost_index} /dev/nvme0n1
   EOH
 end
 
@@ -33,7 +33,7 @@ else
   mount '/mnt/ost' do
     device "/dev/nvme0n1"
     fstype 'lustre'
-    #options 'rw'
+    options 'noatime,nodiratime,nobarrier'
     action [:mount, :enable]
   end
 end

@@ -4,22 +4,45 @@ include_recipe "::default"
 node.override["lustre"]["is_manager"] = true
 cluster.store_discoverable()
 
-%w{lustre kmod-lustre-osd-ldiskfs lustre-dkms lustre-osd-ldiskfs-mount lustre-resource-agents e2fsprogs lustre-tests}.each { |p| package p }
+package %w(lustre kmod-lustre-osd-ldiskfs lustre-osd-ldiskfs-mount lustre-resource-agents e2fsprogs lustre-tests)
 
 manager_ipaddress = node["lustre"]["manager_ipaddress"]
+
+directory '/mnt/mdsmgs' do
+  owner 'root'
+  group 'root'
+  mode '0777'
+  action [:create]
+end
 
 bash 'initialize mds' do
   user 'root'
   cwd '/tmp'
   code <<-EOH
 echo "my ip is #{manager_ipaddress}"
-mkfs.lustre --fsname=lustre --mgs --mdt --index=0 /dev/nvme0n1
-mkdir -p /mnt/mdsmgs
-mount -t lustre /dev/nvme0n1 /mnt/mdsmgs
-sleep 20
+#sed -i 's/ResourceDisk\.Format=y/ResourceDisk.Format=n/g' /etc/waagent.conf
+weak-modules --add-kernel --no-initramfs
+mkfs.lustre --fsname=LustreFS --mgs --mdt --backfstype=ldiskfs --reformat /dev/nvme0n1 --index 0
+  EOH
+end
+
+if File.read('/etc/mtab').lines.grep(/ lustre /)[0]
+  Chef::Log.info("Lustre mds-mgs is already mounted")
+else
+  mount '/mnt/mdsmgs' do
+    device "/dev/nvme0n1"
+    fstype 'lustre'
+    options 'noatime,nodiratime,nobarrier'
+    action [:mount, :enable]
+  end
+end
+
+bash 'tweak lctl settings' do
+  user 'root'
+  cwd '/tmp'
+  code <<-EOH
 lctl set_param -P mdt.*-MDT0000.hsm_control=enabled
 lctl set_param -P mdt.*-MDT0000.hsm.default_archive_id=1
 lctl set_param mdt.*-MDT0000.hsm.max_requests=128
   EOH
 end
-

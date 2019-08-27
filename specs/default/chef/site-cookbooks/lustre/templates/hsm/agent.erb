@@ -2,7 +2,7 @@
 mount_root="/mnt/lustre"
 
 # Lustre NID and filesystem name for the front end filesystem, the agent will mount this
-client_device="<%= node['lustre']['manager_ipaddress'] %>@tcp:/lustre"
+client_device="<%= node['lustre']['manager_ipaddress'] %>@tcp:/LustreFS"
 
 # Do you want to use S3 and POSIX, in this example we use POSIX
 enabled_plugins=["lhsm-plugin-az"]

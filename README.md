@@ -21,6 +21,16 @@ On top of this, HSM can be activated to import data from, and archive to Azure b
  - [configure a client in a PBSPro cluster](manual/PBSPRO.md)
  - [using HSM](manual/HSM.md)
 
+# Updates
+Version 1.0.1
+- bumped to Lustre 2.10.8
+- verified on CentOS 7.6
+- moved from dkms to weak-modules (>10 min config to <3 min)
+- moved bash actions into chef actions where possible
+
+Version 1.0.0
+- initial release based on 2.10.6
+- verified on CentOS 7.4
 
 # Contributing
 

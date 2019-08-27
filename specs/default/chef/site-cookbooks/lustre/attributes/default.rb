@@ -1,9 +1,9 @@
-default['lustre']['repo']['version'] = 'lustre-2.10.3'
+default['lustre']['repo']['version'] = 'latest-2.10-release/el7.6.1810'
 
-default['lustre']['repo']['yum']['baseurl'] = "https://downloads.whamcloud.com/public/lustre/#{node['lustre']['repo']['version']}/el7/patchless-ldiskfs-server/"
+default['lustre']['repo']['yum']['baseurl'] = "https://downloads.whamcloud.com/public/lustre/#{node['lustre']['repo']['version']}/patchless-ldiskfs-server/"
 default['lustre']['repo']['yum']['gpgcheck'] = false 
 
-default['lustre-client']['repo']['yum']['baseurl'] = "https://downloads.whamcloud.com/public/lustre/#{node['lustre']['repo']['version']}/el7/client/"
+default['lustre-client']['repo']['yum']['baseurl'] = "https://downloads.whamcloud.com/public/lustre/#{node['lustre']['repo']['version']}/client/"
 default['lustre-client']['repo']['yum']['gpgcheck'] = false 
 
 default['e2fs']['repo']['yum']['baseurl'] = "https://downloads.whamcloud.com/public/e2fsprogs/latest/el7/"
