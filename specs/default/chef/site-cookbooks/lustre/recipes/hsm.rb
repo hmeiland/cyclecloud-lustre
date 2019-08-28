@@ -3,7 +3,8 @@
 include_recipe "::default"
 
 #%w{git lustre-client lustre-client-dkms}.each { |p| package p }
-package %w(git lustre-client kmod-lustre-client)
+#package %w(git lustre-client kmod-lustre-client)
+package %w(git lustre kmod-lustre-client)
 
 manager_ipaddress = node["lustre"]["manager_ipaddress"]
 

@@ -46,6 +46,9 @@ UseLowPrio = false
     InitialCount = 1
 
         [[[configuration]]]
+	lustre.blobaccount = $LustreBlobAccount
+	lustre.blobkey = $LustreBlobKey
+	lustre.blobcontainer = $LustreBlobContainer
 
         [[[cluster-init lustre:oss:1.0.1]]]
         Optional = True

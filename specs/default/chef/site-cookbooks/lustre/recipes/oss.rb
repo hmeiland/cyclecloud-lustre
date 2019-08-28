@@ -9,22 +9,28 @@ manager_ipaddress = node["lustre"]["manager_ipaddress"]
 
 ost_index = node[:azure][:metadata][:compute][:name].split('_')[1]
 
-bash 'initialize oss' do
-  user 'root'
-  cwd '/tmp'
-  code <<-EOH
-  echo "connecting to mds #{manager_ipaddress}"
-  echo "creating oss index #{ost_index}"
-  weak-modules --add-kernel --no-initramfs
-  mkfs.lustre --ost --fsname LustreFS --mgsnode #{manager_ipaddress}@tcp0 --index=#{ost_index} /dev/nvme0n1
-  EOH
+if File.read('/etc/mtab').lines.grep(/ lustre /)[0]
+  Chef::Log.info("Lustre ost is already mounted")
+else
+  bash 'initialize oss' do
+    user 'root'
+    cwd '/tmp'
+    code <<-EOH
+    echo "connecting to mds #{manager_ipaddress}"
+    echo "creating oss index #{ost_index}"
+    weak-modules --add-kernel --no-initramfs
+    mkfs.lustre --ost --fsname LustreFS --mgsnode #{manager_ipaddress}@tcp0 --index=#{ost_index} /dev/nvme0n1
+    EOH
+  end
 end
 
-directory '/mnt/ost' do
-  owner 'root'
-  group 'root'
-  mode '0777'
-  action [:create]
+unless Dir.exist? '/mnt/ost'
+  directory '/mnt/ost' do
+    owner 'root'
+    group 'root'
+    mode '0777'
+    action [:create]
+  end
 end
 
 if File.read('/etc/mtab').lines.grep(/ lustre /)[0]
