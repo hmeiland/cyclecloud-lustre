@@ -12,7 +12,7 @@ On top of this, HSM can be activated to import data from, and archive to Azure b
 ```
 > git clone https://github.com/hmeiland/cyclecloud-lustre.git
 > cd cyclecloud-lustre
-> cycleloud project upload <container>
+> cyclecloud project upload <container>
 > cyclecloud import_template -f templates/lustre.txt 
 ```
 
