@@ -25,8 +25,12 @@ On top of this, HSM can be activated to import data from, and archive to Azure b
 Version 1.0.1
 - bumped to Lustre 2.10.8
 - verified on CentOS 7.6
-- moved from dkms to weak-modules (>10 min config to <3 min)
+- moved from dkms to weak-modules (>10 min config to <5 min)
 - moved bash actions into chef actions where possible
+- moved mdt from nvme to sdb
+- added oss and hsm to mds, so single node is functional
+- added example pbspro with lustre client template
+- added pbspro and hsm documentation pages 
 
 Version 1.0.0
 - initial release based on 2.10.6
