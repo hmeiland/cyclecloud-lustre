@@ -21,4 +21,9 @@ and depending on the size, after a few moments the file can also be found in you
 
 To sync a complete container from Azure Blob to Lustre, a tool is created: azure-import. This tool will create file-pointers for all objects in your container. These file pointers will be set up as archived/released, so the actual file data will not be on lustre untill the file is restored. This restoring will be done when the file is touched by e.g. cat; or when the file is resored using lfs hsm_restore.
 
-     
+```
+> export STORAGE_ACCOUNT
+> export STORAGE_KEY
+> azure-import lustre
+> find ./ -type f -exec lfs hsm_restore {} \;
+```     
