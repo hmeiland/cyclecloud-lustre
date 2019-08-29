@@ -31,6 +31,7 @@ Version 1.0.1
 - added oss and hsm to mds, so single node is functional
 - added example pbspro with lustre client template
 - added pbspro and hsm documentation pages 
+- removed optional prefix for archiving
 
 Version 1.0.0
 - initial release based on 2.10.6
