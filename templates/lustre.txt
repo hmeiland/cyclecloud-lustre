@@ -29,6 +29,9 @@ UseLowPrio = false
     IsReturnProxy = $ReturnProxy
     
         [[[configuration]]]
+	lustre.blobaccount = $LustreBlobAccount
+	lustre.blobkey = $LustreBlobKey
+	lustre.blobcontainer = $LustreBlobContainer
 
         [[[cluster-init lustre:mds:1.0.1]]]
         Optional = True
@@ -43,7 +46,7 @@ UseLowPrio = false
     [[nodearray oss]]
     MachineType = $MasterMachineType
     Azure.SingleScaleset = true
-    InitialCount = 1
+    InitialCount = 0 
 
         [[[configuration]]]
 	lustre.blobaccount = $LustreBlobAccount
