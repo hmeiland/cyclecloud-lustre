@@ -18,7 +18,7 @@ UseLowPrio = false
     Region = $Region
     KeyPairLocation = ~/.ssh/cyclecloud.pem
     
-        [[[cluster-init lustre:default:1.0.0]]]
+        [[[cluster-init lustre:default:1.0.1]]]
         Optional = True
 
         [[[configuration]]]
@@ -29,8 +29,11 @@ UseLowPrio = false
     IsReturnProxy = $ReturnProxy
     
         [[[configuration]]]
+	lustre.blobaccount = $LustreBlobAccount
+	lustre.blobkey = $LustreBlobKey
+	lustre.blobcontainer = $LustreBlobContainer
 
-        [[[cluster-init lustre:mds:1.0.0]]]
+        [[[cluster-init lustre:mds:1.0.1]]]
         Optional = True
 
         [[[network-interface eth0]]]
@@ -43,11 +46,14 @@ UseLowPrio = false
     [[nodearray oss]]
     MachineType = $MasterMachineType
     Azure.SingleScaleset = true
-    InitialCount = 1
+    InitialCount = 0 
 
         [[[configuration]]]
+	lustre.blobaccount = $LustreBlobAccount
+	lustre.blobkey = $LustreBlobKey
+	lustre.blobcontainer = $LustreBlobContainer
 
-        [[[cluster-init lustre:oss:1.0.0]]]
+        [[[cluster-init lustre:oss:1.0.1]]]
         Optional = True
 
     [[nodearray client]]
@@ -56,7 +62,7 @@ UseLowPrio = false
         [[[configuration]]]
         lustre.client.mount_point = $LustreMountPoint
 
-        [[[cluster-init lustre:client:1.0.0]]]
+        [[[cluster-init lustre:client:1.0.1]]]
         Optional = True
 
         [[[network-interface eth0]]]
@@ -70,7 +76,7 @@ UseLowPrio = false
 	lustre.blobkey = $LustreBlobKey
 	lustre.blobcontainer = $LustreBlobContainer
 
-        [[[cluster-init lustre:hsm:1.0.0]]]
+        [[[cluster-init lustre:hsm:1.0.1]]]
         Optional = True
 
         [[[network-interface eth0]]]
@@ -81,7 +87,7 @@ UseLowPrio = false
 
         [[[configuration]]]
 
-        [[[cluster-init lustre:smb:1.0.0]]]
+        [[[cluster-init lustre:smb:1.0.1]]]
         Optional = True
 
         [[[network-interface eth0]]]

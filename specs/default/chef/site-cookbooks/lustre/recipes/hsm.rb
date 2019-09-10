@@ -2,8 +2,19 @@
 # Licensed under the MIT License.
 include_recipe "::default"
 
-%w{git lustre-client lustre-client-dkms}.each { |p| package p }
+#%w{git lustre-client lustre-client-dkms}.each { |p| package p }
+#package %w(git lustre-client kmod-lustre-client)
+package %w(git lustre kmod-lustre-client)
+
 manager_ipaddress = node["lustre"]["manager_ipaddress"]
+
+bash 'initialize weak modules' do
+  user 'root'
+  cwd '/tmp'
+  code <<-EOH
+weak-modules --add-kernel --no-initramfs
+  EOH
+end
 
 bash 'build hsm' do
   user 'root'
