@@ -160,7 +160,8 @@ Order = 20
         Label = Base OS
         ParameterType = Cloud.Image
         Config.OS = linux
-        DefaultValue = cycle.image.centos7
+        #DefaultValue = cycle.image.centos7
+        DefaultValue = OpenLogic:CentOS:7.6:latest
         Config.Filter := Package === "cycle.image.centos7"
 
     [[parameters Advanced Networking]]
