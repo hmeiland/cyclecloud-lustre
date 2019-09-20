@@ -34,6 +34,10 @@ Autoscale = $Autoscale
         [[[configuration]]]
 
         [[[cluster-init pbspro:master:1.2.0]]]
+	[[[cluster-init lustre:client:1.0.1]]]
+	[[[configuration]]]
+        lustre.client.cluster_name = $LustreClusterName
+	lustre.client.mount_point = $LustreMountPoint
 
         [[[network-interface eth0]]]
         AssociatePublicIpAddress = $UsePublicNetwork
@@ -42,14 +46,14 @@ Autoscale = $Autoscale
         PrivatePort = 8652
         PublicPort = 8652
 
-    [[node login]]
-    MachineType = $MasterMachineType
+    #[[node login]]
+    #MachineType = $MasterMachineType
         
-	[[[cluster-init pbspro:login:1.2.0]]]
-	[[[cluster-init lustre:client:1.0.1]]]
-	[[[configuration]]]
-        lustre.client.cluster_name = $LustreClusterName
-	lustre.client.mount_point = $LustreMountPoint
+	#[[[cluster-init pbspro:login:1.2.0]]]
+	#[[[cluster-init lustre:client:1.0.1]]]
+	#[[[configuration]]]
+        #lustre.client.cluster_name = $LustreClusterName
+	#lustre.client.mount_point = $LustreMountPoint
 
     [[nodearray execute]]
     MachineType = $ExecuteMachineType
