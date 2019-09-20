@@ -11,10 +11,13 @@ manager_ipaddress = node["lustre"]["manager_ipaddress"]
 directory '/mnt/mdsmgs' do
   owner 'root'
   group 'root'
-  mode '0777'
+  #mode '0777'
   action [:create]
 end
 
+if File.read('/etc/mtab').lines.grep(/ lustre /)[0]
+   Chef::Log.info("Lustre mds is already mounted")
+else
 bash 'initialize mds' do
   user 'root'
   cwd '/tmp'
@@ -26,6 +29,7 @@ weak-modules --add-kernel --no-initramfs
 umount /mnt/resource
 mkfs.lustre --fsname=LustreFS --mgs --mdt --backfstype=ldiskfs --reformat /dev/sdb1 --index 0
   EOH
+  end
 end
 
 if File.read('/etc/mtab').lines.grep(/ lustre /)[0]
