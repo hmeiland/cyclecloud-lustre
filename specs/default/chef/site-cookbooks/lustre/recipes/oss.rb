@@ -7,7 +7,11 @@ package %w(lustre kmod-lustre-osd-ldiskfs lustre-osd-ldiskfs-mount lustre-resour
 
 manager_ipaddress = node["lustre"]["manager_ipaddress"]
 
-ost_index = (node[:azure][:metadata][:compute][:name].split('_')[1].to_i + 1).to_s
+if node["recipes"].include? "lustre::mds"
+  ost_index = (0).to_s
+else
+  ost_index = (node[:azure][:metadata][:compute][:name].split('_')[1].to_i + 1).to_s
+end
 
 if File.read('/etc/mtab').lines.grep(/ lustre /)[0]
   Chef::Log.info("Lustre ost is already mounted")
