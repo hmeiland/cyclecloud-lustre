@@ -4,7 +4,11 @@ include_recipe "::default"
 
 #%w{lustre-client lustre-client-dkms}.each { |p| package p }
 #%w{lustre-client kmod-lustre-client}.each { |p| package p }
-package %w(lustre-client kmod-lustre-client)
+
+package %w(lustre-client kmod-lustre-client) do
+  not_if { ::File.exist?('/usr/sbin/mount.lustre') }
+end
+
 manager_ipaddress = node["lustre"]["manager_ipaddress"]
 
 bash 'initialize weak modules' do
