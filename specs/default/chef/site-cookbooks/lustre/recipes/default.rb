@@ -22,7 +22,9 @@ yum_repository 'e2fs' do
   only_if { node['platform_family'] == 'rhel' }
 end
 
-include_recipe '::_search_manager'
+if node["lustre"]["client"]["mount_point"] != '' || node["lustre"]["client"]["mount_point"] != 'None'
+   include_recipe '::_search_manager'
+end
 
 manager_ipaddress = node['lustre']['manager_ipaddress']
 
