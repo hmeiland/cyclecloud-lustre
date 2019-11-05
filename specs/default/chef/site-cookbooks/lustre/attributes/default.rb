@@ -22,5 +22,5 @@ default['lustre']['manager_ipaddress'] = nil
 default['lustre']['client']['manager_ipaddress'] = nil
 default['lustre']['client']['cluster_name'] = nil
 
-# The mount point for the Lustreclients
-default['lustre']['client']['mount_point'] = '/lustre'
+# The mount point for the Lustre clients
+default['lustre']['client']['mount_point'] = ''
