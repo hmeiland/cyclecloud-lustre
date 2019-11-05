@@ -14,7 +14,7 @@ weak-modules --add-kernel --no-initramfs
   EOH
 end
 
-if node["lustre"]["client"]["mount_point"]
+if node["lustre"]["client"]["mount_point"] != '' || node["lustre"]["client"]["mount_point"] != 'None'
   mount_point = node["lustre"]["client"]["mount_point"]
   manager_ipaddress = node["lustre"]["manager_ipaddress"]
   #directory '/lustre' do
