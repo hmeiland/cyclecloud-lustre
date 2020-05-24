@@ -5,12 +5,13 @@ include_recipe "::default"
 #%w{lustre kmod-lustre-osd-ldiskfs lustre-dkms lustre-osd-ldiskfs-mount lustre-resource-agents e2fsprogs lustre-tests}.each { |p| package p }
 package %w(lustre kmod-lustre-osd-ldiskfs lustre-osd-ldiskfs-mount lustre-resource-agents e2fsprogs lustre-tests)
 
-manager_ipaddress = node["lustre"]["manager_ipaddress"]
 
 if node["recipes"].include? "lustre::mds"
   ost_index = (0).to_s
+  manager_ipaddress = node["ipaddress"]
 else
   ost_index = (node[:azure][:metadata][:compute][:name].split('_')[1].to_i + 1).to_s
+  manager_ipaddress = node["lustre"]["manager_ipaddress"]
 end
 
 if File.read('/etc/mtab').lines.grep(/ lustre /)[0]

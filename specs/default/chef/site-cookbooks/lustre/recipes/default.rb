@@ -1,6 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
+include_recipe '::_search_manager'
 node.override['cyclecloud']['maintenance_converge']['enabled'] = false
 
 yum_repository 'lustre' do
