@@ -1,4 +1,4 @@
-default['lustre']['repo']['version'] = 'latest-2.10-release/el7.6.1810'
+default['lustre']['repo']['version'] = 'latest-2.12-release/el7.7.1908'
 
 default['lustre']['repo']['yum']['baseurl'] = "https://downloads.whamcloud.com/public/lustre/#{node['lustre']['repo']['version']}/patchless-ldiskfs-server/"
 default['lustre']['repo']['yum']['gpgcheck'] = false 

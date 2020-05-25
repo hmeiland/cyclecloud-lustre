@@ -2,8 +2,6 @@
 # Licensed under the MIT License.
 include_recipe "::default"
 
-#%w{git lustre-client lustre-client-dkms}.each { |p| package p }
-#package %w(git lustre-client kmod-lustre-client)
 package %w(git lustre kmod-lustre-client)
 
 manager_ipaddress = node["lustre"]["manager_ipaddress"]
@@ -20,14 +18,7 @@ bash 'build hsm' do
   user 'root'
   cwd '/tmp'
   code <<-EOH
-yum install -y gcc
-yum install -y https://github.com/whamcloud/lemur/releases/download/0.5.2/lhsm-0.5.2-1.x86_64.rpm https://github.com/whamcloud/lemur/releases/download/0.5.2/lemur-data-movers-0.5.2-1.x86_64.rpm https://github.com/whamcloud/lemur/releases/download/0.5.2/lemur-hsm-agent-0.5.2-1.x86_64.rpm https://github.com/whamcloud/lemur/releases/download/0.5.2/lemur-testing-0.5.2-1.x86_64.rpm
-wget https://dl.google.com/go/go1.12.1.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.12.1.linux-amd64.tar.gz
-export PATH=/usr/local/go/bin:$PATH
-go get -u github.com/edwardsp/lemur/cmd/lhsm-plugin-az
-go build github.com/edwardsp/lemur/cmd/lhsm-plugin-az
-sudo cp lhsm-plugin-az /usr/libexec/lhsmd/.
+yum install -y https://azurehpc.azureedge.net/rpms/lemur-azure-hsm-agent-1.0.0-lustre_2.12.x86_64.rpm https://azurehpc.azureedge.net/rpms/lemur-azure-data-movers-1.0.0-lustre_2.12.x86_64.rpm
   EOH
   not_if { ::File.exist?('/usr/libexec/lhsmd/lhsm-plugin-az') }
 end
